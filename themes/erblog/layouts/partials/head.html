@@ -38,12 +38,12 @@
         src="https://cdn.bootcss.com/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
     </script>
     {{ end }}
-    
+    <meta property="og:type" content="article" />
     <meta name="twitter:card" content="summary">
  <meta name="twitter:site" content="@laminba2003">
  <meta name="twitter:domain" property="og:site_name" content="mamadoulamineba.netlify.com">
  <meta name="twitter:url" property="og:url" content="{{ .Permalink | absURL }}">
- <meta name="twitter:title" property="og:title" content="ThinkTech - Site Officiel"> 
+ <meta name="twitter:title" property="og:title" content="{{ .Site.Title }}"> 
     
     <meta name="description" content="{{ .Params.description }}" />
 	<meta itemprop="description" content="{{ .Params.description }}" />
