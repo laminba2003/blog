@@ -4,6 +4,7 @@ title = "Mamadou Lamine Ba's Blog"
 theme = 'erblog'
 PygmentsCodeFences = true
 PygmentsStyle = "emacs"
+disqusShortname = "disqus_dwAWdkYCYm"
 
 [params]
     author = "Mamadou Lamine Ba"
