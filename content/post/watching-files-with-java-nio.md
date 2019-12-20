@@ -7,6 +7,7 @@ tags : [
     "JAVA" , "NIO", "MONITORING"
 ]
 image : "https://mamadoulamineba.netlify.com/images/monitoring.jpg"
+author : "Mamadou Lamine Ba"
 ---
 
 The _java.nio.file_ package provides a file change notification API, called the [Watch Service](https://docs.oracle.com/javase/7/docs/api/java/nio/file/WatchService.html) API.

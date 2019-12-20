@@ -10,6 +10,7 @@ series : [
     "Groovify your Java Servlets"
 ]
 image : "https://mamadoulamineba.netlify.com/images/hands.png"
+author : "Mamadou Lamine Ba"
 ---
 
 I will start the second part of this series with a very simple answer to the question: Why Groovy over Java? Replacing Java has never been my intent, and I have never created a project using Groovy alone.

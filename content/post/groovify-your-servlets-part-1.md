@@ -10,6 +10,7 @@ series : [
     "Groovify your Java Servlets"
 ]
 image : "https://mamadoulamineba.netlify.com/images/handshake.png"
+author : "Mamadou Lamine Ba"
 ---
 
 This blog post is not about [Groovlets](http://docs.groovy-lang.org/latest/html/documentation/servlet-userguide.html), which are Groovy scripts executed by a servlet. They are run on request, having the whole web context (request, response, etc.) bound to the evaluation context. Groovlets are much more suitable for smaller web applications. Compared to Java Servlets, coding in Groovy can be much simpler.
