@@ -1,0 +1,25 @@
+baseURL = "http://example.org/"
+languageCode = "en-us"
+title = "Blog"
+theme = 'erblog'
+PygmentsCodeFences = true
+PygmentsStyle = "emacs"
+
+[params]
+    author = "Mamadou Lamine Ba"
+    bio = """
+    <p> I'm a senior software engineer interested in many different fields in computer science including Web Development, Databases, Integration, Microservices and much more.
+     I like to learn new technologies and share knowledge with others.
+    </p>
+    """
+    copyright = "Copyright &copy;2019; all rights reserved."
+
+[[menu.main]]
+    url = "/about/"
+    name = "About"
+    weight = 7
+
+
+[taxonomies]
+tag = "tags"
+series = "series"
