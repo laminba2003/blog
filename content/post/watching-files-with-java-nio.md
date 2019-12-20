@@ -383,10 +383,10 @@ protected void loadScripts(File folder) {
 	if (files != null) {
 	  for (File file : files) {
 	    if (file.isFile()) {
-		Object object = scriptManager.loadScript(file);
-		register(object);
+		  Object object = scriptManager.loadScript(file);
+		  register(object);
 	    } else {
-		loadScripts(file);
+		  loadScripts(file);
 	    }
 	  }
         }
