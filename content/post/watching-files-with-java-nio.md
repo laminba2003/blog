@@ -1,7 +1,7 @@
 ---
 title: "Watching Files With Java NIO"
 date: 2019-12-20T18:07:51+01:00
-draft: true
+draft: false
 tags : [
     "JAVA" , "NIO", "MONITORING"
 ]
