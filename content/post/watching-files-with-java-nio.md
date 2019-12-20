@@ -379,18 +379,18 @@ The _FileAdapter_ class is very useful in my case, to reload a Groovy script whe
 
 protected void loadScripts(File folder) {
    if (folder.exists()) {
-	File[] files = folder.listFiles();
-	if (files != null) {
-	  for (File file : files) {
-	    if (file.isFile()) {
-		  Object object = scriptManager.loadScript(file);
-		  register(object);
-	    } else {
-		  loadScripts(file);
-	    }
-	  }
-        }
-       watch(folder);
+	 File[] files = folder.listFiles();
+	 if (files != null) {
+	   for (File file : files) {
+	     if (file.isFile()) {
+		   Object object = scriptManager.loadScript(file);
+		   register(object);
+	     } else {
+		   loadScripts(file);
+	     }
+	   }
+     }
+     watch(folder);
    }
 }
 
