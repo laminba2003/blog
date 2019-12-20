@@ -1,20 +1,20 @@
 ---
 title: "Groovify Your Java Servlets (Part 1) : Getting Started"
-date: 2019-12-20T16:50:56+01:00
+date: 2019-10-28T16:50:56+01:00
 description : "In this first part of this series, we are going to set the building blocks of how to bring the same logic to enhance the Servlet API."
-draft: true
+draft: false
 tags : [
     "GROOVY" , "JAVA" , "SERVLET"
 ]
 series : [
     "Groovify your Java Servlets"
 ]
-image : "img/src/test.jpg"
+image : "https://mamadoulamineba.netlify.com/images/handshake.png"
 ---
 
-This article is not about Groovlets, which are Groovy scripts executed by a servlet. They are run on request, having the whole web context (request, response, etc.) bound to the evaluation context. Groovlets are much more suitable for smaller web applications. Compared to Java Servlets, coding in Groovy can be much simpler.
+This blog post is not about [Groovlets](http://docs.groovy-lang.org/latest/html/documentation/servlet-userguide.html), which are Groovy scripts executed by a servlet. They are run on request, having the whole web context (request, response, etc.) bound to the evaluation context. Groovlets are much more suitable for smaller web applications. Compared to Java Servlets, coding in Groovy can be much simpler.
 
-This post provides a simple example demonstrating the kinds of things you can do with a Groovlet. It has a couple of implicit variables we can use, for example, request, response to access the HttpServletRequest, and HttpServletResponse objects. We have access to the HttpSession with the session variable. If we want to output data, we can use out, sout, and HTML. This is more like a script as it does not have a class wrapper. 
+This post provides a simple example demonstrating the kinds of things you can do with a Groovlet. It has a couple of implicit variables we can use, for example, _request_, _response_ to access the _HttpServletRequest_, and _HttpServletResponse_ objects. We have access to the _HttpSession_ with the session variable. If we want to output data, we can use _out_, _sout_, and _html_. This is more like a script as it does not have a class wrapper. 
 
 
 ### Groovlet 
@@ -41,9 +41,9 @@ session.counter = session.counter + 1
 
 In this first part of this series, we are going to set the building blocks of how to bring the same logic to enhance the Servlet API. The goal is to write our artifacts (servlets, filters, listeners) with the Groovy language, which is in constant evolution in the Tiobe Index of language popularity, coming in this month at No. 11. 
 
-Next, we will register them in the ServletContext class. We will consider a live development as a mandatory feature, even if it is well-known that the ServletContext class will throw an IllegalStateException when adding a new Servlet, Filter, or Listener after its initialization. Also, updating the artifacts at runtime is another challenging task.
+Next, we will register them in the ServletContext class. We will consider a live development as a mandatory feature, even if it is well-known that the _ServletContext_ class will throw an _IllegalStateException_ when adding a new Servlet, Filter, or Listener after its initialization. Also, updating the artifacts at runtime is another challenging task.
 
-To lay things down, I will first uncover the final design. In the next articles, I will cover more ground to show you, in detail, how things are achieved technically. The main vision is to use the Groovy language and its provided modules (JSON, SQL, etc.) to simplify Servlet API web development while waiting to apply the same principles to the JAX-RS API.
+To lay things down, I will first uncover the final design. In the next blog posts, I will cover more ground to show you, in detail, how things are achieved technically. The main vision is to use the Groovy language and its provided modules (JSON, SQL, etc.) to simplify Servlet API web development while waiting to apply the same principles to the JAX-RS API.
 
 It is worth it to mention that we are going to build a non-intrusive API that will not affect the current structure of your Java EE project, and you are free to groovify your existing Java Servlets over time. Let's get started!
 
@@ -94,7 +94,7 @@ class CustomerServlet {
 {{< / highlight >}}
 
 
-The @WebServlet annotation, which is used to define a Servlet component in a web application, will be reduced to our own @Servlet annotation with the same attributes. In the same spirit, and as read above, the name of the HTTP request method handlers (doGet, doPost, doPut, and so on) will be shortened and they will take no arguments since the request and the response are now implicit variables.
+The _@WebServlet_ annotation, which is used to define a Servlet component in a web application, will be reduced to our own _@Servlet_ annotation with the same attributes. In the same spirit, and as read above, the name of the HTTP request method handlers (_doGet_, _doPost_, _doPut_, and so on) will be shortened and they will take no arguments since the request and the response are now implicit variables.
 
 ### New Servlet Signature 
 
@@ -120,7 +120,7 @@ public @interface Servlet {
 {{< / highlight >}}
 
 
-We will no longer explicitly extend the HttpServlet class. When a script is loaded by the GroovyScriptEngine, we will use javassist, a library for dealing with Java bytecode, to extend dynamically our own derived HttpServlet class within a BytecodeProcessor instance, which is set anonymously to the Groovy CompilerConfiguration object.  
+We will no longer explicitly extend the _HttpServlet_ class. When a script is loaded by the GroovyScriptEngine, we will use _javassist_, a library for dealing with Java bytecode, to extend dynamically our own derived _HttpServlet_ class within a BytecodeProcessor instance, which is set anonymously to the Groovy _CompilerConfiguration_ object.  
 
 ### New Servlet Signature 
 
@@ -175,7 +175,7 @@ public abstract class AbstractServlet extends HttpServlet {
 {{< / highlight >}}
 
 
-The code of the HttpServlet base class above is not complete. I'm going to wait for the next articles to show you how we are going to make the HttpServletRequest, the HttpServletResponse, and so on, to become implicit variables.
+The code of the _HttpServlet_ base class above is not complete. I'm going to wait for the next blog posts to show you how we are going to make the _HttpServletRequest_, the _HttpServletResponse_, and so on, to become implicit variables.
 
 As stated in the style guide, in Groovy, a getter and a setter form what we call a property. Instead of the Java-way of calling getters/setters, we can use a field-like access notation for accessing and setting such properties, but there is more to write about.
 
