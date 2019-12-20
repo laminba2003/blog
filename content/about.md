@@ -1,5 +1,5 @@
 ---
-title: "About"
+title: "About Me"
 date: 2019-12-20T18:35:30+01:00
 draft: false
 author : "Mamadou Lamine Ba"
