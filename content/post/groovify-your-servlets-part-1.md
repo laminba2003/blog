@@ -1,7 +1,7 @@
 ---
 title: "Groovify Your Java Servlets (Part 1) : Getting Started"
 date: 2019-10-28T16:50:56+01:00
-description : "In this first part of this series, we are going to set the building blocks of how to bring the same logic to enhance the Servlet API."
+description : "In this first part of this series, we are going to set the building blocks of how to enhance the Servlet API using Groovy."
 draft: false
 tags : [
     "GROOVY" , "JAVA" , "SERVLET"
