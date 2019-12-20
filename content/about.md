@@ -50,3 +50,9 @@ JMeter, Jira
 
 ## Areas of Interest
 Reading, Writing, Music, Sport
+
+## Social
+
+* [GitHub](https://github.com/laminba2003)
+* [Linkedin](https://www.linkedin.com/in/lamineba/)
+* [Twitter](https://twitter.com/laminba2003)
