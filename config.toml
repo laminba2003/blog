@@ -1,6 +1,6 @@
 baseURL = "https://mamadoulamineba.netlify.com/"
 languageCode = "en-us"
-title = "Blog"
+title = "Mamadou Lamine Ba's Blog"
 theme = 'erblog'
 PygmentsCodeFences = true
 PygmentsStyle = "emacs"
