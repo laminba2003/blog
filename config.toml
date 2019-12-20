@@ -12,7 +12,9 @@ PygmentsStyle = "emacs"
      I like to learn new technologies and share knowledge with others.
     </p>
     """
+    description = "I'm a senior software engineer interested in many different fields in computer science including Web Development, Databases, Integration, Microservices and much more. I like to learn new technologies and share knowledge with others."
     copyright = "Copyright &copy;2019. all rights reserved."
+    ogimage = "https://mamadoulamineba.netlify.com/self/img/avater.jpg"
 
 [[menu.main]]
     url = "/about/"

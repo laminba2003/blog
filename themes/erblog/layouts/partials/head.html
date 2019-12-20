@@ -45,10 +45,10 @@
  <meta name="twitter:url" property="og:url" content="{{ .Permalink | absURL }}">
  <meta name="twitter:title" property="og:title" content="{{if.Params.title}}{{.Params.title}}{{else}}{{ .Site.Title }}{{end}}"> 
     
-    <meta name="description" content="{{ .Params.description }}" />
-	<meta itemprop="description" content="{{ .Params.description }}" />
-	<meta property="og:description" content="{{ .Params.description }}" />
-	<meta name="twitter:description" content="{{ .Params.description }}" />
+    <meta name="description" content="{{if.Params.description}}{{.Params.description}}{{else}}{{.Site.Params.description}}{{end}}" />
+	<meta itemprop="description" content="{{if.Params.description}}{{.Params.description}}{{else}}{{.Site.Params.description}}{{end}}" />
+	<meta property="og:description" content="{{if.Params.description}}{{.Params.description}}{{else}}{{.Site.Params.description}}{{end}}" />
+	<meta name="twitter:description" content="{{if.Params.description}}{{.Params.description}}{{else}}{{.Site.Params.description}}{{end}}" />
 	
 	
 	
