@@ -160,9 +160,6 @@ public void contextDestroyed(ServletContextEvent event) {
 
 {{< / highlight >}}
 
-
-Whenever an event occurs, the file path is fully resolved and the listeners are notified accordingly. If it is the creation of a new folder, another _FileWatcher_ instance will be created for its monitoring. 
-
 {{< highlight java>}}
 
 public class FileWatcher implements Runnable {
@@ -200,6 +197,41 @@ public class FileWatcher implements Runnable {
 }
 
 {{< / highlight >}}
+
+
+Whenever an event occurs, the file path is fully resolved and the listeners are notified accordingly. If it is the creation of a new folder, another _FileWatcher_ instance will be created for its monitoring. 
+
+{{< highlight java>}}
+
+public class FileWatcher implements Runnable {
+
+  protected void notifyListeners(WatchEvent.Kind<?> kind, File file) {
+    FileEvent event = new FileEvent(file);
+    if (kind == ENTRY_CREATE) {
+      for (FileListener listener : listeners) {
+         listener.onCreated(event);
+      }
+      if (file.isDirectory()) {
+         // create a new FileWatcher instance to watch the new directory
+         new FileWatcher(file).setListeners(listeners).watch();
+      }
+    } 
+    else if (kind == ENTRY_MODIFY) {
+      for (FileListener listener : listeners) {
+        listener.onModified(event);
+      }
+    }
+    else if (kind == ENTRY_DELETE) {
+      for (FileListener listener : listeners) {
+        listener.onDeleted(event);
+      }
+    }
+  }
+  
+}
+
+{{< / highlight >}}
+
 
 
 Here is the complete listing of the _FileWatcher_ class.
