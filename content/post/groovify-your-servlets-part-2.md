@@ -1,7 +1,7 @@
 ---
 title: "Groovify Your Java Servlets (Part 2): Scripting the JVM"
 date: 2019-11-25T17:49:37+01:00
-description : "The purpose of this article is to show you how you can embed the Groovy Script Engine in a generic way whether you are building a Java console or web application"
+description : "The purpose of this blog post is to show you how you can embed the Groovy Script Engine in a generic way whether you are building a Java console or web application"
 draft: false
 tags : [
     "GROOVY" , "JAVA" , "SERVLET"
@@ -19,7 +19,7 @@ Over the years, I have learned that we must use the right language for the job, 
 
 So I've been wondering for a while: Why can't we follow the same philosophy to take advantage of both languages since they interact quite well with one another? And on the other hand, Groovy can solve a lot of problems with less code than Java, producing more readable and compact solutions.
 
-Therefore, the purpose of this article is to show you how you can embed the Groovy Script Engine in a generic way whether you are building a Java console or web application.
+Therefore, the purpose of this blog post is to show you how you can embed the Groovy Script Engine in a generic way whether you are building a Java console or web application.
 
 I will start with a brief presentation of the JSR 223, the Java Scripting API, which has been withdrawn in December 2016, following its maintenance review, where it was decided that this functionality would be included as an integral part of Java 9 and onward. 
 
@@ -130,7 +130,7 @@ public class ScriptManager {
 {{< / highlight >}}
 
 
-You can enhance it later to provide a configuration to the Groovy Script Engine in order to customize the compiler. One simple use case would be to apply the TypeChecked or  CompileStatic AST annotation to all source files. For further information, please read this article.
+You can enhance it later to provide a configuration to the Groovy Script Engine in order to customize the compiler. One simple use case would be to apply the TypeChecked or  CompileStatic AST annotation to all source files. For further information, please read this blog post.
 
 To load your scripts in your Java applications with the _ScriptManager_ that we created earlier is fairly easy, and unless you can come up with a better solution, make them always implement an interface or extend an abstract Java class so you can perform a cast. Reflection is by nature a costly operation due to the process of checking the class, fields, the methods, and so on.
 
@@ -268,7 +268,7 @@ public class ScriptManagerTest {
 {{< / highlight >}}
 
 
-In the next article, we will cover among other topics and how with an instance of a Groovy _MarkupBuilder_ bound to the response writer. We can make a servlet to generate an HTML markup like a Groovlet.
+In the next blog post, we will cover among other topics and how with an instance of a Groovy _MarkupBuilder_ bound to the response writer. We can make a servlet to generate an HTML markup like a Groovlet.
 
 #### MyServlet.groovy
 
