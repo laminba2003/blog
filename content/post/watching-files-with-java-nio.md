@@ -1,7 +1,7 @@
 ---
 title: "Watching Files With Java NIO"
 date: 2019-12-20T18:07:51+01:00
-description : "The Watch Service API is fairly low level, allowing us to customize it. In this article, we are going to design a high-level API on top of this mechanism for listening to file events for a given folder."
+description : "The Watch Service API is fairly low level, allowing us to customize it. In this blog post, we are going to design a high-level API on top of this mechanism for listening to file events for a given folder."
 draft: false
 tags : [
     "JAVA" , "NIO", "MONITORING"
@@ -43,7 +43,7 @@ Event kind : ENTRY_CREATE - File : test.txt
 Event kind : ENTRY_MODIFY - File : test.txt
 {{< / highlight >}}
 
-The Watch Service API is fairly low level, allowing us to customize it. In this article, we are going to design a high-level API on top of this mechanism for listening to file events for a given folder. 
+The Watch Service API is fairly low level, allowing us to customize it. In this blog post, we are going to design a high-level API on top of this mechanism for listening to file events for a given folder. 
 We will begin by creating a _FileEvent_ class which extends the _java.util.EventObject_ from which all event state objects shall be derived. 
 A _FileEvent_ instance is constructed with a reference to the source, which is logically the file upon which the event occurred upon. 
 
@@ -434,7 +434,7 @@ public class FileWatcherTest {
 {{< / highlight >}}
 
 
-In my previous article, ["Groovify Your Java Servlets (Part 2): Scripting the JVM"](../groovify-your-servlets-part-2/), I shown how to instantiate an object from a script with the Groovy Script Engine using a simple _ScriptManager_ class. This one may be the perfect opportunity for me to correct its implementation, by replacing the deprecated _Class.newInstance()_ method with the _Class.getConstructor().newInstance()_ method in order to make it right without the exceptions thrown.
+In my previous blog post, ["Groovify Your Java Servlets (Part 2): Scripting the JVM"](../groovify-your-servlets-part-2/), I shown how to instantiate an object from a script with the Groovy Script Engine using a simple _ScriptManager_ class. This one may be the perfect opportunity for me to correct its implementation, by replacing the deprecated _Class.newInstance()_ method with the _Class.getConstructor().newInstance()_ method in order to make it right without the exceptions thrown.
 
 {{< highlight java>}}
 
