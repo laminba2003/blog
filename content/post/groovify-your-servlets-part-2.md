@@ -292,7 +292,7 @@ class MyServlet {
 
 #### Generated HTML
 
-{{< highlight java>}}
+{{< highlight html>}}
 
 <!DOCTYPE html>
 <html>
