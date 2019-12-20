@@ -39,10 +39,17 @@
     </script>
     {{ end }}
     
+    <meta name="twitter:card" content="summary">
+ <meta name="twitter:site" content="@laminba2003">
+ <meta name="twitter:domain" property="og:site_name" content="mamadoulamineba.netlify.com">
+ <meta name="twitter:url" property="og:url" content="{{ .Permalink | absURL }}">
+ <meta name="twitter:title" property="og:title" content="ThinkTech - Site Officiel"> 
+    
     <meta name="description" content="{{ .Params.description }}" />
 	<meta itemprop="description" content="{{ .Params.description }}" />
 	<meta property="og:description" content="{{ .Params.description }}" />
 	<meta name="twitter:description" content="{{ .Params.description }}" />
+	
 	
 	
 	{{ if .Params.image }} 
