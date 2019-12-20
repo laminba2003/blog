@@ -10,7 +10,7 @@ image : "https://mamadoulamineba.netlify.com/images/monitoring.jpg"
 author : "Mamadou Lamine Ba"
 ---
 
-The _java.nio.file_ package provides a file change notification API, called the [Watch Service](https://docs.oracle.com/javase/7/docs/api/java/nio/file/WatchService.html) API.
+The _java.nio.file_ package provides a file change notification API, called the [WatchService](https://docs.oracle.com/javase/7/docs/api/java/nio/file/WatchService.html) API.
 It enables us to register a folder with the watch service. When registering, we tell the service which types of events we are interested in: file creation, file modification, or file deletion. When the service detects an event of interest, it is forwarded to the registered process and handled as needed. This is basically how it works:
 
 1. The first step is to create a new _WatchService_ by using the _newWatchService()_ method of the _FileSystem_ class.
@@ -44,7 +44,7 @@ Event kind : ENTRY_CREATE - File : test.txt
 Event kind : ENTRY_MODIFY - File : test.txt
 {{< / highlight >}}
 
-The Watch Service API is fairly low level, allowing us to customize it. In this blog post, we are going to design a high-level API on top of this mechanism for listening to file events for a given folder. 
+The WatchService API is fairly low level, allowing us to customize it. In this blog post, we are going to design a high-level API on top of this mechanism for listening to file events for a given folder. 
 We will begin by creating a _FileEvent_ class which extends the _java.util.EventObject_ from which all event state objects shall be derived. 
 A _FileEvent_ instance is constructed with a reference to the source, which is logically the file upon which the event occurred upon. 
 
