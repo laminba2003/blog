@@ -1,10 +1,12 @@
 ---
 title: "Watching Files With Java NIO"
 date: 2019-12-20T18:07:51+01:00
+description : "The Watch Service API is fairly low level, allowing us to customize it. In this article, we are going to design a high-level API on top of this mechanism for listening to file events for a given folder."
 draft: false
 tags : [
     "JAVA" , "NIO", "MONITORING"
 ]
+image : "https://mamadoulamineba.netlify.com/images/monitoring.jpg"
 ---
 
 The _java.nio.file_ package provides a file change notification API, called the Watch Service API.
