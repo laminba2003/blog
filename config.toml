@@ -1,4 +1,4 @@
-baseURL = "//https://mamadoulamineba.netlify.com/"
+baseURL = "https://mamadoulamineba.netlify.com/"
 languageCode = "en-us"
 title = "Blog"
 theme = 'erblog'
