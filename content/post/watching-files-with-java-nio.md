@@ -9,7 +9,7 @@ tags : [
 image : "https://mamadoulamineba.netlify.com/images/monitoring.jpg"
 ---
 
-The _java.nio.file_ package provides a file change notification API, called the Watch Service API.
+The _java.nio.file_ package provides a file change notification API, called the [Watch Service](https://docs.oracle.com/javase/7/docs/api/java/nio/file/WatchService.html) API.
 It enables us to register a folder with the watch service. When registering, we tell the service which types of events we are interested in: file creation, file modification, or file deletion. When the service detects an event of interest, it is forwarded to the registered process and handled as needed. This is basically how it works:
 
 1. The first step is to create a new _WatchService_ by using the _newWatchService()_ method of the _FileSystem_ class.
@@ -34,7 +34,7 @@ while (poll) {
 {{< / highlight >}}
  
 
-This is the console output 
+This is the console output: 
 
 {{< highlight plain>}}
 Event kind : ENTRY_CREATE - File : file.txt
@@ -67,7 +67,7 @@ public class FileEvent extends EventObject {
 {{< / highlight >}}
 
 
-Next, we create the _FileListener_ interface that must be implemented by an observer in order to be notified for file events. 
+Next, we create a _FileListener_ interface that must be implemented by an observer in order to be notified for file events. 
 It extends the _java.util.EventListener_ interface which is a tagging interface that all event listener interfaces must extend.
 
 
@@ -160,7 +160,7 @@ public void contextDestroyed(ServletContextEvent event) {
 {{< / highlight >}}
 
 
-Whenever an event occurs, the file path is resolved and the listeners are notified accordingly . If it is the creation of a new folder, another _FileWatcher_ instance will be created for its monitoring. 
+Whenever an event occurs, the file path is fully resolved and the listeners are notified accordingly. If it is the creation of a new folder, another _FileWatcher_ instance will be created for its monitoring. 
 
 {{< highlight java>}}
 
