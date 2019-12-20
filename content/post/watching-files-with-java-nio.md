@@ -7,12 +7,15 @@ tags : [
 ]
 ---
 
-The java.nio.file package provides a file change notification API, called the Watch Service API.
+The _java.nio.file_ package provides a file change notification API, called the Watch Service API.
 It enables us to register a folder with the watch service. When registering, we tell the service which types of events we are interested in: file creation, file modification, or file deletion. When the service detects an event of interest, it is forwarded to the registered process and handled as needed. This is basically how it works:
 
-The first step is to create a new WatchService by using the newWatchService() method of the FileSystem class.
-Next, we register a Path instance for the folder to be monitored with the types of events that we are interested in.
-And at last, we implement an infinite loop to wait for incoming events. When an event occurs, the key is signaled and placed into the watcher's queue. After processing its events, we need to put it back into a ready state by invoking its reset() method. If it returns false, the key is no longer valid and the loop can exit.
+1. The first step is to create a new _WatchService_ by using the _newWatchService()_ method of the _FileSystem_ class.
+2. Next, we register a _Path_ instance for the folder to be monitored with the types of events that we are interested in.
+3. And at last, we implement an infinite loop to wait for incoming events. 
+When an event occurs, the key is signaled and placed into the watcher's queue. 
+After processing its events, we need to put it back into a ready state by invoking its _reset()_
+ method. If it returns false, the key is no longer valid and the loop can exit.
 
 {{< highlight java>}}
 WatchService watchService = FileSystems.getDefault().newWatchService();
@@ -38,7 +41,9 @@ Event kind : ENTRY_CREATE - File : test.txt
 Event kind : ENTRY_MODIFY - File : test.txt
 {{< / highlight >}}
 
-The WatchService API is fairly low level, allowing us to customize it. In this article, we are going to design a high-level API on top of this mechanism for listening to file events for a given folder. We will begin by creating a FileEvent class which extends the java.util.EventObject from which all event state objects shall be derived. A FileEvent instance is constructed with a reference to the source, which is logically the file upon which the event occurred upon. 
+The Watch Service API is fairly low level, allowing us to customize it. In this article, we are going to design a high-level API on top of this mechanism for listening to file events for a given folder. 
+We will begin by creating a _FileEvent_ class which extends the _java.util.EventObject_ from which all event state objects shall be derived. 
+A _FileEvent_ instance is constructed with a reference to the source, which is logically the file upon which the event occurred upon. 
 
 ### FileEvent.java
 
@@ -60,7 +65,8 @@ public class FileEvent extends EventObject {
 {{< / highlight >}}
 
 
-Next, we create the FileListener interface that must be implemented by an observer in order to be notified for file events. It extends the java.util.EventListener interface which is a tagging interface that all event listener interfaces must extend.
+Next, we create the _FileListener_ interface that must be implemented by an observer in order to be notified for file events. 
+It extends the _java.util.EventListener_ interface which is a tagging interface that all event listener interfaces must extend.
 
 
 ### FileListener.java
@@ -78,7 +84,8 @@ public interface FileListener extends EventListener {
 {{< / highlight >}}
 
 
-The last piece of the puzzle is to create the subject, which maintains the list of observers, and notifies them of any state changes, by calling one of their methods. We are going to name it FileWatcher and given a folder, this is how an instance of this class is constructed.
+The last piece of the puzzle is to create the subject, which maintains the list of observers, and notifies them of any state changes, by calling one of their methods. 
+We are going to name it _FileWatcher_ and given a folder, this is how an instance of this class is constructed.
 
 {{< highlight java>}}
 
@@ -106,7 +113,7 @@ public class FileWatcher {
 {{< / highlight >}}
 
 
-It can implement the Runnable interface so we can start the watch process with a daemon thread when invoking its watch() method if the folder exists.
+It can implement the _Runnable_ interface so we can start the watch process with a daemon thread when invoking its _watch()_ method if the folder exists.
 
 {{< highlight java>}}
 
@@ -131,7 +138,10 @@ public class FileWatcher implements Runnable {
 
 
 
-In the implementation of its run() method, a WatchService instance is created to poll for events within a try-with-resources statement. We will keep a track of it using a static final list in the FileWatcher class, so we can later invoke its close() method to cause any thread waiting to retrieve keys, to throw the unchecked ClosedWatchServiceException which will interrupt the watch process in a clean way. Therefore,  we will get no memory leak warnings when the application is being gracefully shutdown.
+In the implementation of its _run()_ method, a _WatchService_ instance is created to poll for events within a try-with-resources statement. 
+We will keep a track of it using a static final list in the _FileWatcher_ class, so we can later invoke its _close()_ method to cause any thread 
+waiting to retrieve keys, to throw the unchecked _ClosedWatchServiceException_ which will interrupt the watch process in a clean way. 
+Therefore,  we will get no memory leak [warnings](https://stackoverflow.com/questions/32881405/watchservice-causing-memory-leak-in-tomcat) when the application is being gracefully shutdown.
 
 {{< highlight java>}}
 
@@ -148,7 +158,7 @@ public void contextDestroyed(ServletContextEvent event) {
 {{< / highlight >}}
 
 
-Whenever an event occurs, the file path is resolved and the listeners are notified accordingly . If it is the creation of a new folder, another FileWatcher instance will be created for its monitoring. 
+Whenever an event occurs, the file path is resolved and the listeners are notified accordingly . If it is the creation of a new folder, another _FileWatcher_ instance will be created for its monitoring. 
 
 {{< highlight java>}}
 
@@ -189,7 +199,7 @@ public class FileWatcher implements Runnable {
 {{< / highlight >}}
 
 
-Here is the complete listing of the FileWatcher class.
+Here is the complete listing of the _FileWatcher_ class.
 
 ### FileWatcher.java
 
@@ -301,7 +311,7 @@ public class FileWatcher implements Runnable {
 {{< / highlight >}}
 
 
-The final touch of our design can be the creation of a FileAdapter class which provides a default implementation of the FileListener class so we can process only few of the events to save code.
+The final touch of our design can be the creation of a _FileAdapter_ class which provides a default implementation of the _FileListener_ class so we can process only few of the events to save code.
 
 ### FileAdapter.java
 
@@ -328,7 +338,7 @@ public abstract class FileAdapter implements FileListener {
 
 {{< / highlight >}}
 
-The FileAdapter class is very useful in my case, to reload a Groovy script when developing a servlet application within my IDE. When a file is modified and republished in the deployment directory, it is first deleted before being recreated. Therefore, the modification event which is fired twice on my Windows platform, can be ignored and its deletion counterpart is unusable in my context since currently, we can't unregister a servlet, filter or listener from the web container. Thus, I found no reason yet to have such feature enabled in production and in this use case, performance is not even a concern since it will be hard to have even five packages to watch by a different FileWatcher instance.
+The _FileAdapter_ class is very useful in my case, to reload a Groovy script when developing a servlet application within my IDE. When a file is modified and republished in the deployment directory, it is first deleted before being recreated. Therefore, the modification event which is fired twice on my Windows platform, can be ignored and its deletion counterpart is unusable in my context since currently, we can't unregister a servlet, filter or listener from the web container. Thus, I found no reason yet to have such feature enabled in production and in this use case, performance is not even a concern since it will be hard to have even five packages to watch by a different _FileWatcher_ instance.
 
 {{< highlight java>}}
 
@@ -369,7 +379,7 @@ protected void process(File script) {
 
 {{< / highlight >}}
 
-Even though, it is said to use the Thread.sleep() method in an unit test is generally a bad idea, we are going to use it to write a test case for the FileWatcher class since we need a delay between the operations.
+Even though, it is said to use the _Thread.sleep()_ method in an unit test is generally a bad idea, we are going to use it to write a test case for the _FileWatcher_ class since we need a delay between the operations.
 
 {{< highlight java>}}
 
@@ -422,7 +432,7 @@ public class FileWatcherTest {
 {{< / highlight >}}
 
 
-In my previous article, "Groovify Your Java Servlets (Part 2): Scripting the JVM", I shown how to instantiate an object from a script with the Groovy Script Engine using a simple  ScriptManager class. This one may be the perfect opportunity for me to correct its implementation, by replacing the deprecated Class.newInstance() method with the Class.getConstructor().newInstance() method in order to make it right without the exceptions thrown.
+In my previous article, ["Groovify Your Java Servlets (Part 2): Scripting the JVM"](../groovify-your-servlets-part-2/), I shown how to instantiate an object from a script with the Groovy Script Engine using a simple _ScriptManager_ class. This one may be the perfect opportunity for me to correct its implementation, by replacing the deprecated _Class.newInstance()_ method with the _Class.getConstructor().newInstance()_ method in order to make it right without the exceptions thrown.
 
 {{< highlight java>}}
 
