@@ -26,7 +26,7 @@ disqusShortname = "disqus_dwAWdkYCYm"
 
 [[menu.main]]
     url = "/about/"
-    name = "About"
+    name = "About Me"
     weight = 7
 
 
