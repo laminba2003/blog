@@ -26,10 +26,14 @@
                 	{{ range . }}
                     <div style="margin-left: 10px;">
                         <blockquote class="layui-elem-quote" style="background-color:#FFFFFF;margin-top: 10px;">
-                            <a href="{{.Permalink}}">
+                            <a href="{{.Permalink}}" style="margin-bottom : 8px;display:block">
                                 <h2 class="">{{.Title}}</h2>
                             </a>
-                            {{partial "info" .}}
+                            {{ range .Params.tags }}
+       						 <a href="{{ "tags/" | relLangURL }}{{ . | urlize | lower }}">
+           						 <span class="layui-badge" style="vertical-align: 2px;">{{ . | title | humanize }}</span>
+        					</a>
+    						{{ end }}
                         </blockquote>
                     </div>
                 	{{ end }}

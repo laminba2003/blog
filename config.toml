@@ -19,6 +19,12 @@ disqusShortname = "disqus_dwAWdkYCYm"
     favicon = "self/img/avater.jpg"
 
 [[menu.main]]
+    url = "/projects/"
+    name = "Projects"
+    weight = 6
+
+
+[[menu.main]]
     url = "/about/"
     name = "About"
     weight = 7

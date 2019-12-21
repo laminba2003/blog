@@ -1,8 +1,8 @@
 ---
 title: "About Me"
-date: 2019-12-20T18:35:30+01:00
 draft: false
 author : "Mamadou Lamine Ba"
+comments : false
 ---
 
  ![Mamadou Lamine Ba](/self/img/avater.jpg)
