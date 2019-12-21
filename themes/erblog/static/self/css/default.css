@@ -234,6 +234,22 @@ body {
     }
 }
 
+@media only screen and (max-width: 480px) {
+	.nav-self-logo {
+    	margin-left: 11px;
+   	    font-size: 15px;
+	}
+	
+	.about_left {
+    	margin-top: 0px;
+	}
+
+	.layui-nav-child {
+    	left: -45px;
+	}
+}
+
+
 /* Footer */
 footer {
     /* background-color: #393D49; */
