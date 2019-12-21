@@ -373,7 +373,7 @@ public abstract class FileAdapter implements FileListener {
 
 {{< / highlight >}}
 
-The _FileAdapter_ class is very useful in my case, to reload a Groovy script when developing a servlet application within my IDE. When a file is modified and republished in the deployment directory, it is first deleted before being recreated. Therefore, the modification event which is fired twice on my Windows platform, can be ignored and its deletion counterpart is unusable in my context since currently, we can't unregister a servlet, filter or listener from the web container. Thus, I found no reason yet to have such feature enabled in production. Also in this use case, performance is not even a concern since it will be hard to have even five packages to watch by a different _FileWatcher_ instance.
+The _FileAdapter_ class is very useful in my case, to reload a Groovy script when developing a servlet application within my IDE. When a file is modified and republished in the deployment directory, it is first deleted before being recreated. Therefore, the modification event which is fired twice on my Windows platform, can be ignored and its deletion counterpart is unusable in my context since currently, we can't unregister a servlet, filter or listener from the web container. Thus, I found no reason yet to have such feature enabled in production. Also in this use case, performance is not even a concern since it will be hard to have even five packages to be watched by a different _FileWatcher_ instance.
 
 {{< highlight java>}}
 
