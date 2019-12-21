@@ -3,7 +3,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>{{ .Site.Title }}{{if.Params.title}} - {{.Params.title}} {{end}}</title>
-
+    <meta name="robots" content="index,follow" /> 
+	<meta name="googlebot" content="index,follow" />
     
     {{if .Params.tags}}
     <meta content="{{ delimit (union .Params.tags .Params.categories) ", " }}" name="keywords">
@@ -49,7 +50,7 @@
 	<meta itemprop="description" content="{{if.Params.description}}{{.Params.description}}{{else}}{{.Site.Params.description}}{{end}}" />
 	<meta property="og:description" content="{{if.Params.description}}{{.Params.description}}{{else}}{{.Site.Params.description}}{{end}}" />
 	<meta name="twitter:description" content="{{if.Params.description}}{{.Params.description}}{{else}}{{.Site.Params.description}}{{end}}" />
-	
+	<meta name="author" content="mAmadou Lamine Ba">	
 	
 	
 	{{ if .Params.image }} 
