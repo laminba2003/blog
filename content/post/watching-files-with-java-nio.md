@@ -346,7 +346,7 @@ public class FileWatcher implements Runnable {
 {{< / highlight >}}
 
 
-The final touch of our design can be the creation of a _FileAdapter_ class which provides a default implementation of the _FileListener_ class so we can process only few of the events to save code.
+The final touch of our design can be the creation of a _FileAdapter_ class which provides a default implementation of the _FileListener_ interface so we can process only few of the events to save code.
 
 ### FileAdapter.java
 
