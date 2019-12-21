@@ -13,7 +13,7 @@
                 <div class="layui-card-body markdown-body single-content">
                     {{ .Content }}
                     {{- partial "self-define-single.html" . -}}
-                    {{ template "_internal/disqus.html" . }}
+                    {{- partial "disqus.html" . -}}
                 </div>
             </div>
         </div>
