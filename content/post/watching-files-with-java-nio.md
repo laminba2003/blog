@@ -44,7 +44,7 @@ Event kind : ENTRY_CREATE - File : test.txt
 Event kind : ENTRY_MODIFY - File : test.txt
 {{< / highlight >}}
 
-The WatchService API is fairly low level, allowing us to customize it. In this blog post, we are going to design a high-level API on top of this mechanism for listening to file events for a given folder. 
+The WatchService API is fairly low level, allowing us to customize it. In this blog post and following the Observer pattern, we are going to design a high-level API on top of this mechanism for listening to file events for a given folder. 
 We will begin by creating a _FileEvent_ class which extends the _java.util.EventObject_ from which all event state objects shall be derived. 
 A _FileEvent_ instance is constructed with a reference to the source, which is logically the file upon which the event occurred upon. 
 
