@@ -1,5 +1,5 @@
 ---
-title: "Groovify Your Java Servlets (Part 2): Scripting the JVM"
+title: "Groovify Your Java Servlets (Part 2) : Scripting the JVM"
 date: 2019-11-25T17:49:37+01:00
 description : "The purpose of this blog post is to show you how you can embed the Groovy Script Engine in a generic way whether you are building a Java console or web application"
 draft: false
