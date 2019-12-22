@@ -21,3 +21,6 @@
         <p class="copyright">{{ .Site.Params.copyright | default "&copy; All rights reserved. Powered by [Hugo](https://gohugo.io) and [Erblog](https://github.com/ertuil/erblog)." | safeHTML }}</p>
     </div>
 </footer>
+{{ if (findRE "<pre" .Content 1) }}
+    <script src="/self/js/copy-code.js"></script>
+{{ end }}
