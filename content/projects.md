@@ -4,7 +4,7 @@ draft: false
 comments : false
 ---
 
-## In my spare time, I like to get involved on side projects
+## I like to get involved on side projects in my spare time
 
 ## APIS
 
