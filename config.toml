@@ -5,6 +5,7 @@ theme = 'erblog'
 PygmentsCodeFences = true
 PygmentsStyle = "emacs"
 disqusShortname = "disqus_dwAWdkYCYm"
+googleAnalytics = "UA-154944934-1"
 
 [params]
     author = "Mamadou Lamine Ba"
