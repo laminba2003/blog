@@ -44,6 +44,9 @@ body {
     margin: 0;
 }
 
+.layui-elem-quote .layui-badge {
+	background-color: #ff9b51;
+}
 
 /* index */
 .about {
