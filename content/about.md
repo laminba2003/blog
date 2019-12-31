@@ -5,7 +5,7 @@ author : "Mamadou Lamine Ba"
 comments : false
 ---
 
- ![Mamadou Lamine Ba](/self/img/20191231_215853.jpg)
+ ![Mamadou Lamine Ba](/self/img/avater.jpg)
  
 I'm a senior software engineer interested in many different fields in computer science including Web Development, Databases, Integration, Microservices and much more. I like to learn new technologies and share knowledge with others.
 
