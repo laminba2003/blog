@@ -53,10 +53,10 @@ Reading, Writing, Music, Sport
 
 ## Full Resume
 
-You can download my complete following these links above:
+You can download my complete resume using the links above:
 
-*[French Version]()
-*[English Version]()
+* [French Version](/cv-mamadou-lamine-ba.pdf)
+* [English Version](/CV_MamadouLamineBa_en.pdf)
 
 ## Social
 
