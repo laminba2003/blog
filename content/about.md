@@ -51,6 +51,13 @@ JMeter, Jira
 ## Areas of Interest
 Reading, Writing, Music, Sport
 
+## Full Resume
+
+You can download my complete following these links above:
+
+*[French Version]()
+*[English Version]()
+
 ## Social
 
 * [GitHub](https://github.com/laminba2003)
