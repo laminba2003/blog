@@ -12,4 +12,4 @@ Projects
 
 [Nest Project](https://github.com/laminba2003/project-nest) is a sample project built with the Nest framework to find and create books on MongoDB Atlas through a REST API.
 
-[Find the Pairs](https://github.com/laminba2003/project-nest) is a game made with NextJS ReactJS and Styled-components to find the pairs of items.
+[Find the Pairs](https://github.com/laminba2003/project-nest) is a game made with NextJS, ReactJS and Styled-components to find the pairs of items.
