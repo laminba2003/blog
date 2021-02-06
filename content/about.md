@@ -16,10 +16,8 @@ I'm a senior software engineer interested in many different fields in computer s
 * Drafting of specification documents
 * Design and follow up of technical and operational acceptance
 * Participation in workshops of application and technical architecture definition
-* Monitoring of the effective functioning of applications in production
 * Resolution of operational and performance incidents
 * Front-end and back-end development of applications
-* Guarantee the good execution in production of the applications
 
 
 ## Technical skills
@@ -50,13 +48,6 @@ JMeter, Jira
 
 ## Areas of Interest
 Reading, Writing, Music, Sport
-
-## Full Resume
-
-You can download my complete resume using the links above:
-
-* [French Version](/cv-mamadou-lamine-ba.pdf)
-* [English Version](/CV_MamadouLamineBa_en.pdf)
 
 ## Social
 
