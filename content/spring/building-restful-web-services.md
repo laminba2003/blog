@@ -552,8 +552,6 @@ public class Application {
 {{< highlight java>}}
 package com.spring.training.config;
 
-import brave.context.log4j2.ThreadContextScopeDecorator;
-import brave.propagation.CurrentTraceContext;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -615,4 +613,4 @@ public class RequestException extends RuntimeException {
 {{< / highlight >}}
 
 
-Among other topics, we will cover in a next post how to [handle the exceptions](../exception-handling/) with Spring Boot and this example is available for download on [GitHub](https://github.com/laminba2003/spring-rest-services).
+Among other topics like [testing](../testing/) our API, we will cover as well in a next post how to [handle the exceptions](../exception-handling/) with Spring Boot and this example is available for download on [GitHub](https://github.com/laminba2003/spring-rest-services).
