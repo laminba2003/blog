@@ -573,6 +573,17 @@ public class ApplicationConfig {
 {{< / highlight >}}
 
 
+#### messages.properties
+
+{{< highlight toml>}}
+country.notfound=country not found with name {0}
+country.exists=the country with name {0} is already created
+country.errordeletion=the country with name {0} cannot be deleted
+person.notfound=person not found with id {0}
+person.errordeletion=the person with id {0} cannot be deleted
+{{< / highlight >}}
+
+
 #### EntityNotFoundException.java
 
 {{< highlight java>}}
