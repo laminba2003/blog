@@ -1,1 +1,4 @@
 /.project
+.public
+.hugo_build.lock
+.idea
