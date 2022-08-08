@@ -6,7 +6,7 @@ draft: false
 tags : [
     "JAVA" , "SPRINGBOOT", "REST"
 ]
-image : "images/monitoring.jpg"
+image : "images/rest-logo.png"
 author : "Mamadou Lamine Ba"
 ---
 
