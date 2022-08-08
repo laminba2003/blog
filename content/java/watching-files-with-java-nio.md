@@ -6,7 +6,7 @@ draft: false
 tags : [
     "JAVA" , "NIO", "MONITORING"
 ]
-image : "https://mamadoulamineba.netlify.com/images/monitoring.jpg"
+image : "images/monitoring.jpg"
 author : "Mamadou Lamine Ba"
 ---
 

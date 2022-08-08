@@ -6,7 +6,7 @@ draft: false
 tags : [
     "JAVA" , "SPRINGBOOT", "REST"
 ]
-image : "https://mamadoulamineba.netlify.com/images/monitoring.jpg"
+image : "images/monitoring.jpg"
 author : "Mamadou Lamine Ba"
 ---
 
