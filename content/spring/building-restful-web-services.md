@@ -12,6 +12,19 @@ author : "Mamadou Lamine Ba"
 
 Spring Boot provides a very good support to building RESTful Web Services for enterprise applications. This post will explain in detail about building RESTful web services using Spring Boot.
 
+### Package Diagram
+
+![Package Diagram](/images/spring-rest/package-diagram.png)
+
+### Person Diagram
+
+![Person Controller class Diagram](/images/spring-rest/getPersons-class-diagram.png)
+
+### Country Diagram
+
+![Country Controller class Diagram](/images/spring-rest/getCountries-class-diagram.png)
+
+
 #### pom.xml
 
 {{< highlight xml>}}
@@ -414,7 +427,6 @@ public class PersonService {
 }
 {{< / highlight >}}
 
-
 #### PersonController.java
 
 {{< highlight java>}}
@@ -465,7 +477,6 @@ public class PersonController {
 
 }
 {{< / highlight >}}
-
 
 #### CountryController.java
 
