@@ -1,0 +1,28 @@
+baseURL = "https://mamadoulamineba.netlify.com"
+themesDir = "themes"
+theme = "hugo-winston-theme"
+languageCode = "en-us"
+title = "Mamadou Lamine Ba"
+pygmentsCodeFences = true
+pygmentsCodefencesGuessSyntax = true
+pygmentsUseClasses = true
+paginate = 6
+
+[module]
+  [module.hugoVersion]
+    extended = true
+    min = "0.55.0"
+
+[params]
+  comments = true
+  google_analytics_id = ""
+  twitter_handle = "@laminba2003"
+
+  showAuthorOnHomepage = false
+  showAuthorOnPosts = false
+  showPostsOnHomepage = true
+
+  addFrame = true
+  addDot = true
+
+  highlightColor = '#7b16ff'
