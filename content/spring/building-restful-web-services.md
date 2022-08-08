@@ -613,3 +613,6 @@ public class RequestException extends RuntimeException {
 }
 
 {{< / highlight >}}
+
+
+Among other topics, we will cover in a next post how to [handle the exceptions](../exception-handling/) with Spring Boot and this example is available for download on [GitHub](https://github.com/laminba2003/spring-rest-services).
