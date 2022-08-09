@@ -288,7 +288,7 @@ public interface CountryRepository extends CrudRepository<CountryEntity, String>
 {{< / highlight >}}
 
 our services are stored in the ***com.spring.training.service*** package and they
-throw custom exceptions with the accurate message read from a resource bundle properties file during their processing. 
+throw custom exceptions with the accurate message read from a resource bundle properties file during the business logic execution. 
 
 #### PersonService.java
 
@@ -448,8 +448,8 @@ public class CountryService {
 
 {{< / highlight >}}
 
-The last piece of our three-tier architecture is the controllers in the ***com.spring.training.controller*** package.
-They handle the incoming requests and do the processing with the use of the service objects.  
+The last piece of our three-tier architecture is the controllers which are stored in the ***com.spring.training.controller*** package.
+They handle the incoming HTTP requests and do the processing with the use of the dedicated service objects.  
 
 #### PersonController.java
 
