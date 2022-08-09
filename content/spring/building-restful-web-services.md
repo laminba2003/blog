@@ -141,7 +141,7 @@ between the entities and the domain objects.
 
 {{< / highlight >}}
 
-A package ***com.spring.training.domain*** is created for the domain objects (DTOs) and we are using [lombok](https://projectlombok.org/) for
+A package ***com.spring.training.domain*** is created for the domain objects (DTOs) and [lombok](https://projectlombok.org/) is used for
 the code generation of the getters, setters and so on.
 
 #### Person.java
@@ -197,7 +197,7 @@ public class Country implements Serializable {
 
 {{< / highlight >}}
 
-The entities have been created in the ***com.spring.training.entity*** package and the object relational mapping was achieved
+In the other hand, the entities have been created in the ***com.spring.training.entity*** package and the object relational mapping was achieved
 with the JPA annotations.
 
 
@@ -623,7 +623,7 @@ spring:
 
 {{< / highlight >}}
 
-Among other topics like [testing](../testing/) our API, we will cover as well in a next post how to [handle the exceptions](../exception-handling/) with Spring Boot and a controller advice.
+Among other topics like [testing](../testing/) our API, we will cover as well in a next post how to [handle the exceptions](../exception-handling/) with a controller advice.
 
 #### EntityNotFoundException.java
 
