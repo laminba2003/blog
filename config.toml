@@ -1,4 +1,4 @@
-baseURL = "https://mamadoulamineba.netlify.com"
+baseURL = "https://mamadoulamineba.netlify.com/"
 themesDir = "themes"
 theme = "hugo-winston-theme"
 languageCode = "en-us"
