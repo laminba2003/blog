@@ -288,7 +288,7 @@ public interface CountryRepository extends CrudRepository<CountryEntity, String>
 {{< / highlight >}}
 
 our services are stored in the ***com.spring.training.service*** package and they
-throw custom exceptions with the accurate message read from a resource bundle properties files during their processing. 
+throw custom exceptions with the accurate message read from a resource bundle properties file during their processing. 
 
 #### PersonService.java
 
