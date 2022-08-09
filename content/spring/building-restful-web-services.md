@@ -11,6 +11,12 @@ author : "Mamadou Lamine Ba"
 ---
 
 Spring Boot provides a very good support to building RESTful Web Services for enterprise applications. This post will explain in detail about building RESTful web services using Spring Boot.
+In this example, we are going to create REST endpoints in order to manage a bunch of persons and countries. The application will be divided into several
+packages where an API call will follow this typical ordered sequence of events between objects in a three-tier architecture. 
+A controller will receive the request, and in turn will call a service to do the processing with the help of a repository object.  
+
+![Person Controller sequence Diagram](/images/spring-rest/getPersons-sequence-diagram.png)  
+
 
 ### Package Diagram
 
@@ -24,8 +30,26 @@ Spring Boot provides a very good support to building RESTful Web Services for en
 
 ![Country Controller class Diagram](/images/spring-rest/getCountries-class-diagram.png)
 
+### REST endpoints
 
-#### pom.xml
+| HTTP verb | Resource  | Description
+|----|---|---|
+|  GET  | /persons  | retrieve list and information of persons  
+|  GET |  /persons/{id} | retrieve information of a person specified by {id}
+|  POST | /persons  | create a new person with payload  
+|  PUT   |  /persons/{id} | update a person with payload   
+|  DELETE   | /persons/{id}  |  delete a person specified by {id} 
+|  GET  | /countries  | retrieve list and information of countries  
+|  GET |  /countries/{name} | retrieve information of a country specified by {name} 
+|  POST | /countries  | create a new country with payload  
+|  PUT   |  /countries/{name} | update a country with payload   
+|  DELETE   | /countries/{name}  |  delete a country specified by {name} 
+
+
+The data will be persisted in a MySQL database using Spring Data JPA and we will use [MapStruct](https://mapstruct.org/) for the mapping 
+between the entities and the domain objects.
+
+#### Maven Dependencies
 
 {{< highlight xml>}}
 
@@ -73,11 +97,6 @@ Spring Boot provides a very good support to building RESTful Web Services for en
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
         <dependency>
@@ -122,7 +141,8 @@ Spring Boot provides a very good support to building RESTful Web Services for en
 
 {{< / highlight >}}
 
-
+A package ***com.spring.training.domain*** is created for the domain objects (DTOs) and we are using [lombok](https://projectlombok.org/) for
+the code generation of the getters, setters and so on.
 
 #### Person.java
 
@@ -177,6 +197,10 @@ public class Country implements Serializable {
 
 {{< / highlight >}}
 
+The entities have been created in the ***com.spring.training.entity*** package and the object relational mapping was achieved
+with the JPA annotations.
+
+
 #### PersonEntity.java
 
 {{< highlight java>}}
@@ -224,6 +248,10 @@ public class CountryEntity {
 }
 {{< / highlight >}}
 
+Spring Data JPA provides repository support for the Java Persistence API (JPA). It eases development of applications that need to access JPA data sources.
+In our case, a package ***com.spring.training.repository*** is created for this purpose and for the ***PersonEntity***,
+we extend the ***PagingAndSortingRepository*** interface to provide additional methods to retrieve entities using the pagination and sorting abstraction.    
+
 
 #### PersonRepository.java
 
@@ -259,89 +287,8 @@ public interface CountryRepository extends CrudRepository<CountryEntity, String>
 }
 {{< / highlight >}}
 
-
-#### CountryService.java
-
-{{< highlight java>}}
-
-package com.spring.training.service;
-
-import com.spring.training.exception.EntityNotFoundException;
-import com.spring.training.exception.RequestException;
-import com.spring.training.domain.Country;
-import com.spring.training.mapping.CountryMapper;
-import com.spring.training.repository.CountryRepository;
-import lombok.AllArgsConstructor;
-import org.springframework.cache.annotation.CacheConfig;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.CachePut;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.context.MessageSource;
-import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import java.util.List;
-import java.util.Locale;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
-
-@Service
-@AllArgsConstructor
-public class CountryService {
-
-    CountryRepository countryRepository;
-    CountryMapper countryMapper;
-    MessageSource messageSource;
-
-    public List<Country> getCountries() {
-        return StreamSupport.stream(countryRepository.findAll().spliterator(), false)
-                .map(countryMapper::toCountry)
-                .collect(Collectors.toList());
-    }
-
-    @Transactional(readOnly = true)
-    public Country getCountry(String name) {
-        return countryMapper.toCountry(countryRepository.findByNameIgnoreCase(name).orElseThrow(() ->
-                new EntityNotFoundException(messageSource.getMessage("country.notfound", new Object[]{name},
-                        Locale.getDefault()))));
-    }
-
-    @Transactional
-    public Country createCountry(Country country) {
-        countryRepository.findByNameIgnoreCase(country.getName())
-                .ifPresent(entity -> {
-                    throw new RequestException(messageSource.getMessage("country.exists", new Object[]{country.getName()},
-                            Locale.getDefault()), HttpStatus.CONFLICT);
-                });
-        return countryMapper.toCountry(countryRepository.save(countryMapper.fromCountry(country)));
-    }
-
-    @Transactional
-    public Country updateCountry(String name, Country country) {
-        return countryRepository.findByNameIgnoreCase(name)
-                .map(entity -> {
-                    country.setName(name);
-                    return countryMapper.toCountry(
-                            countryRepository.save(countryMapper.fromCountry(country)));
-                }).orElseThrow(() -> new EntityNotFoundException(messageSource.getMessage("country.notfound", new Object[]{name},
-                        Locale.getDefault())));
-    }
-
-    @Transactional
-    public void deleteCountry(String name) {
-        try {
-            countryRepository.deleteById(name);
-        } catch (Exception e) {
-            throw new RequestException(messageSource.getMessage("country.errordeletion", new Object[]{name},
-                    Locale.getDefault()),
-                    HttpStatus.CONFLICT);
-        }
-    }
-
-}
-
-{{< / highlight >}}
-
+our services are stored in the ***com.spring.training.service*** package and they
+throw custom exceptions with the accurate message read from a resource bundle properties files during their processing. 
 
 #### PersonService.java
 
@@ -355,10 +302,6 @@ import com.spring.training.mapping.PersonMapper;
 import com.spring.training.repository.CountryRepository;
 import com.spring.training.repository.PersonRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.cache.annotation.CacheConfig;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.CachePut;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.MessageSource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -427,12 +370,92 @@ public class PersonService {
 }
 {{< / highlight >}}
 
+#### CountryService.java
+
+{{< highlight java>}}
+
+package com.spring.training.service;
+
+import com.spring.training.exception.EntityNotFoundException;
+import com.spring.training.exception.RequestException;
+import com.spring.training.domain.Country;
+import com.spring.training.mapping.CountryMapper;
+import com.spring.training.repository.CountryRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.context.MessageSource;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import java.util.List;
+import java.util.Locale;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+
+@Service
+@AllArgsConstructor
+public class CountryService {
+
+    CountryRepository countryRepository;
+    CountryMapper countryMapper;
+    MessageSource messageSource;
+
+    public List<Country> getCountries() {
+        return StreamSupport.stream(countryRepository.findAll().spliterator(), false)
+                .map(countryMapper::toCountry)
+                .collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
+    public Country getCountry(String name) {
+        return countryMapper.toCountry(countryRepository.findByNameIgnoreCase(name).orElseThrow(() ->
+                new EntityNotFoundException(messageSource.getMessage("country.notfound", new Object[]{name},
+                        Locale.getDefault()))));
+    }
+
+    @Transactional
+    public Country createCountry(Country country) {
+        countryRepository.findByNameIgnoreCase(country.getName())
+                .ifPresent(entity -> {
+                    throw new RequestException(messageSource.getMessage("country.exists", new Object[]{country.getName()},
+                            Locale.getDefault()), HttpStatus.CONFLICT);
+                });
+        return countryMapper.toCountry(countryRepository.save(countryMapper.fromCountry(country)));
+    }
+
+    @Transactional
+    public Country updateCountry(String name, Country country) {
+        return countryRepository.findByNameIgnoreCase(name)
+                .map(entity -> {
+                    country.setName(name);
+                    return countryMapper.toCountry(
+                            countryRepository.save(countryMapper.fromCountry(country)));
+                }).orElseThrow(() -> new EntityNotFoundException(messageSource.getMessage("country.notfound", new Object[]{name},
+                        Locale.getDefault())));
+    }
+
+    @Transactional
+    public void deleteCountry(String name) {
+        try {
+            countryRepository.deleteById(name);
+        } catch (Exception e) {
+            throw new RequestException(messageSource.getMessage("country.errordeletion", new Object[]{name},
+                    Locale.getDefault()),
+                    HttpStatus.CONFLICT);
+        }
+    }
+
+}
+
+{{< / highlight >}}
+
+The last piece of our three-tier architecture is the controllers in the ***com.spring.training.controller*** package.
+They handle the incoming requests and do the processing with the use of the service objects.  
+
 #### PersonController.java
 
 {{< highlight java>}}
 package com.spring.training.controller;
 
-import com.spring.training.annotation.IsAdmin;
 import com.spring.training.domain.Person;
 import com.spring.training.service.PersonService;
 import lombok.AllArgsConstructor;
@@ -483,7 +506,6 @@ public class PersonController {
 {{< highlight java>}}
 package com.spring.training.controller;
 
-import com.spring.training.annotation.IsAdmin;
 import com.spring.training.domain.Country;
 import com.spring.training.service.CountryService;
 import lombok.AllArgsConstructor;
@@ -527,6 +549,8 @@ public class CountryController {
 
 }
 {{< / highlight >}}
+
+Below is the listing of the missing artifacts for running successfully this project  
 
 #### Application.java
 
@@ -583,6 +607,23 @@ person.notfound=person not found with id {0}
 person.errordeletion=the person with id {0} cannot be deleted
 {{< / highlight >}}
 
+#### application.yml
+
+{{< highlight yml>}}
+spring:
+    datasource:
+        password: password
+        url: jdbc:mysql://mysql:3306/spring-rest-db?allowPublicKeyRetrieval=true&autoReconnect=true&useSSL=false
+        username: root
+    jpa:
+      database-platform: org.hibernate.dialect.MySQL8Dialect
+      open-in-view: false
+      hibernate:
+        use-new-id-generator-mappings: false
+
+{{< / highlight >}}
+
+Among other topics like [testing](../testing/) our API, we will cover as well in a next post how to [handle the exceptions](../exception-handling/) with Spring Boot and a controller advice.
 
 #### EntityNotFoundException.java
 
@@ -624,4 +665,4 @@ public class RequestException extends RuntimeException {
 {{< / highlight >}}
 
 
-Among other topics like [testing](../testing/) our API, we will cover as well in a next post how to [handle the exceptions](../exception-handling/) with Spring Boot and this example is available for download on [GitHub](https://github.com/laminba2003/spring-rest-services).
+This example is available for download on [GitHub](https://github.com/laminba2003/spring-rest-services).

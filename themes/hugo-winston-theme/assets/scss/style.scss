@@ -53,3 +53,21 @@ body {
   max-width: 1000px;
   margin: 0 auto;
 }
+
+table {
+  width : 100%;
+  margin-bottom : 20px;
+  tr {
+    background: #f9f9f9;
+      td {
+        text-align : left;
+        padding : 10px;
+      }
+  }
+  th {
+      text-align : left;
+      padding : 10px;
+      background: #00bcd4;
+      color: white;
+    }
+}

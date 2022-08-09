@@ -765,4 +765,18 @@ body {
   max-width: 1000px;
   margin: 0 auto; }
 
+table {
+  width: 100%;
+  margin-bottom: 20px; }
+  table tr {
+    background: #f9f9f9; }
+    table tr td {
+      text-align: left;
+      padding: 10px; }
+  table th {
+    text-align: left;
+    padding: 10px;
+    background: #00bcd4;
+    color: white; }
+
 /*# sourceMappingURL=style.css.map */
