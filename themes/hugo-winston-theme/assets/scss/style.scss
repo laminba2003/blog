@@ -56,7 +56,12 @@ body {
 
 table {
   width : 100%;
+  table-layout: fixed;
   margin-bottom : 20px;
+  @media (max-width: 599px) {
+    font-size: 12px;
+    word-wrap: break-word;
+  }
   tr {
     background: #f9f9f9;
       td {

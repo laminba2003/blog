@@ -767,7 +767,12 @@ body {
 
 table {
   width: 100%;
+  table-layout: fixed;
   margin-bottom: 20px; }
+  @media (max-width: 599px) {
+    table {
+      font-size: 12px;
+      word-wrap: break-word; } }
   table tr {
     background: #f9f9f9; }
     table tr td {
