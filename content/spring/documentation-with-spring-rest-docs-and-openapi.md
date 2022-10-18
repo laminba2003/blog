@@ -1,7 +1,7 @@
 ---
-title: "Documentation with Spring REST Docs and OpenAPI"
+title: "Documentation with OpenAPI and Spring REST Docs"
 date: 2019-12-20T18:07:51+01:00
-description : "Documentation with Spring REST Docs and OpenAPI."
+description : "Documentation with OpenAPI and Spring REST Docs."
 draft: false
 tags : [
     "JAVA" , "SPRINGBOOT", "REST"
