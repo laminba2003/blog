@@ -11,9 +11,9 @@ author : "Mamadou Lamine Ba"
 ---
 
 Spring Boot provides a very good support to building RESTful Web Services for enterprise applications. This post will explain in detail about building RESTful web services using Spring Boot.
-In this example, we are going to create REST endpoints in order to manage a bunch of persons and countries. The application will be divided into several
+We are going to create REST endpoints to manage a bunch of persons and countries. The application will be divided into several
 packages where an API call will follow this typical ordered sequence of events between objects in a three-tier architecture. 
-A controller will receive the request, and in turn will call a service to do the processing with the help of a repository object.  
+A controller will receive the request, and in turn will call a service to do the processing with the help of a repository object, as shown in the example below.  
 
 ![Person Controller sequence Diagram](/images/spring-rest/getPersons-sequence-diagram.png)  
 
@@ -45,9 +45,6 @@ A controller will receive the request, and in turn will call a service to do the
 |  PUT   |  /countries/{name} | update a country with payload   
 |  DELETE   | /countries/{name}  |  delete a country specified by {name} 
 
-
-The data will be persisted in a MySQL database using Spring Data JPA and we will use [MapStruct](https://mapstruct.org/) for the mapping 
-between the entities and the domain objects.
 
 #### Maven Dependencies
 
@@ -141,8 +138,9 @@ between the entities and the domain objects.
 
 {{< / highlight >}}
 
-A package ***com.spring.training.domain*** is created for the domain objects (DTOs) and [lombok](https://projectlombok.org/) is used for
-the code generation of the getters, setters and so on.
+The data will be persisted in a MySQL database using Spring Data JPA and we will use [MapStruct](https://mapstruct.org/) for the mapping 
+between the entities and the domain objects. A package ***com.spring.training.domain*** is created for the domain objects (DTOs) and [lombok](https://projectlombok.org/) is used for
+the code generation.
 
 #### Person.java
 
