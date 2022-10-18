@@ -399,6 +399,7 @@ public class CountryService {
     CountryMapper countryMapper;
     MessageSource messageSource;
 
+    @Transactional(readOnly = true)
     public List<Country> getCountries() {
         return StreamSupport.stream(countryRepository.findAll().spliterator(), false)
                 .map(countryMapper::toCountry)
